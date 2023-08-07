@@ -14,7 +14,7 @@
                  "https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80"
                  "https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80"]})
 
-(def list-number {:number ["A" "B" "C" "D"]} )
+(def list-number {:number ["A" "B" "C" "D" "X" "Y" "Z"]} )
 
 (defn carousel []
   (map (fn [val]
@@ -33,7 +33,7 @@
                     .options (c/CarouselOptions)
                     .items (map (fn [val]
                                   (m/Container
-                                   .width 1500
+                                   .width #_{:clj-kondo/ignore [:unresolved-symbol]} double.infinity
                                    .decoration (m/BoxDecoration
                                                 .border (m/Border.all
                                                          .width 1
