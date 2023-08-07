@@ -1,0 +1,49 @@
+(ns main
+  (:require
+   ["package:flutter/material.dart" :as m]
+
+   [pages.explore :as explore]
+   [pages.search :as search]
+   [pages.offers :as offers]
+   [pages.library :as library]
+   [pages.main-menu :as main-menu]
+   [cljd.flutter :as f]))
+
+(defn ^m/Widget first-screen [ctx]
+  (f/widget
+   :get [m/Navigator]
+   (m/Scaffold
+    .appBar (m/AppBar
+             .title (m/Text "First Screen"))
+    .body   (m/Center
+             .child (m/ElevatedButton
+                     .onPressed #(do
+                                   (.pushNamed navigator "/second")
+                                   nil)
+                     .child     (m/Text "Launch Screen"))))))
+
+
+(defn ^m/Widget second-screen [ctx]
+  (f/widget
+   :get [m/Navigator]
+   (m/Scaffold
+    .appBar (m/AppBar
+             .title (m/Text "Second Screen"))
+    .body   (m/Center
+             .child (m/ElevatedButton
+                     .onPressed #(.pop navigator)
+                     .child     (m/Text "Go Back!"))))))
+
+(defn main []
+  (m/runApp
+   (m/MaterialApp
+    .debugShowCheckedModeBanner false
+    .theme (m/ThemeData
+            .scaffoldBackgroundColor (m/Colors.white))
+    .title "Navigation Basics"
+    .initialRoute "/"
+    .routes       {"/" explore/init
+                   "/search" search/init
+                   "/offers" offers/init
+                   "/library" library/init
+                   "/main-menu" main-menu/init})))

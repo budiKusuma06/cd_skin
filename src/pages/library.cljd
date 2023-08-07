@@ -1,0 +1,20 @@
+(ns pages.library
+  (:require
+   ["package:flutter/material.dart" :as m] 
+   [components.top-navbar :as top-navbar]
+   [components.bottom-navbar :as bottom-navbar]
+   [cljd.flutter :as f]))
+
+(def ^:private initNavBar 2)
+
+(defn ^m/Widget init [ctx]
+  (f/widget
+   :get [m/Navigator]
+   (m/Scaffold
+    .appBar (m/PreferredSize
+             .preferredSize (m/Size.fromHeight 55)
+             .child (top-navbar/init))
+    .body   (m/Center
+             .child (m/Text
+                     "Library pages"))
+    .bottomNavigationBar (bottom-navbar/init initNavBar))))

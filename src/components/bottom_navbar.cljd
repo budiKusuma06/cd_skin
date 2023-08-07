@@ -1,0 +1,139 @@
+(ns components.bottom-navbar
+  (:require
+   ["package:flutter/material.dart" :as m]
+   [cljd.flutter :as f]))
+
+(defn init [active]
+  (f/widget
+   :get [m/Navigator]
+   (m/BottomAppBar
+    .elevation 0
+    .color (m/Colors.white.withOpacity 0.8)
+    .child (m/Container
+            .height 55
+            .child (m/Row
+                    .mainAxisAlignment m/MainAxisAlignment.spaceAround
+                    .children [;; Explore
+                               (if (= active 0)
+                                 (m/Container 
+                                  .decoration (m/BoxDecoration
+                                               .color (m/Colors.white)
+                                               .border (m/Border.all
+                                                        .width 1
+                                                        .color (m/Color 0xff37a9dd))
+                                               .borderRadius (m/BorderRadius.circular 50))
+                                  .padding (m/EdgeInsets.symmetric
+                                            .horizontal 18
+                                            .vertical 8)
+                                  .child (m/Row
+                                          .mainAxisAlignment m/MainAxisAlignment.center
+                                          .children [(m/Icon 
+                                                      m/Icons.explore_outlined
+                                                      .color (m/Color 0xff37a9dd))
+                                                     (m/SizedBox
+                                                      .width 10)
+                                                     (m/Text
+                                                      "Explore"
+                                                      .style (m/TextStyle
+                                                              .color (m/Color 0xff37a9dd)
+                                                              .fontFamily "Poppins"
+                                                              .fontWeight m/FontWeight.bold))]) )
+                                 (m/IconButton
+                                  .icon (m/Icon m/Icons.explore_outlined)
+                                  .color (m/Colors.grey.withOpacity 0.8)
+                                  .onPressed #(do
+                                                (.pushReplacementNamed navigator "/")
+                                                nil)))
+                               ;; Offers
+                               (if (= active 1)
+                                 (m/Container
+                                  .decoration (m/BoxDecoration
+                                               .color (m/Colors.white)
+                                               .border (m/Border.all
+                                                        .width 1
+                                                        .color (m/Color 0xff37a9dd))
+                                               .borderRadius (m/BorderRadius.circular 50))
+                                  .padding (m/EdgeInsets.symmetric
+                                            .horizontal 18
+                                            .vertical 8)
+                                  .child (m/Row
+                                          .mainAxisAlignment m/MainAxisAlignment.center
+                                          .children [(m/Icon
+                                                      m/Icons.local_offer_outlined
+                                                      .color (m/Color 0xff37a9dd))
+                                                     (m/SizedBox
+                                                      .width 10)
+                                                     (m/Text
+                                                      "Offers"
+                                                      .style (m/TextStyle
+                                                              .color (m/Color 0xff37a9dd)
+                                                              .fontFamily "Poppins"
+                                                              .fontWeight m/FontWeight.bold))]))
+                                 (m/IconButton
+                                  .icon (m/Icon m/Icons.local_offer_outlined)
+                                  .color (m/Colors.grey.withOpacity 0.8)
+                                  .onPressed #(do
+                                                (.pushReplacementNamed navigator "/offers")
+                                                nil)))
+                               ;; Library
+                               (if (= active 2)
+                                 (m/Container
+                                  .decoration (m/BoxDecoration
+                                               .color (m/Colors.white)
+                                               .border (m/Border.all
+                                                        .width 1
+                                                        .color (m/Color 0xff37a9dd))
+                                               .borderRadius (m/BorderRadius.circular 50))
+                                  .padding (m/EdgeInsets.symmetric
+                                            .horizontal 18
+                                            .vertical 8)
+                                  .child (m/Row
+                                          .mainAxisAlignment m/MainAxisAlignment.center
+                                          .children [(m/Icon
+                                                      m/Icons.class_outlined
+                                                      .color (m/Color 0xff37a9dd))
+                                                     (m/SizedBox
+                                                      .width 10)
+                                                     (m/Text
+                                                      "Library"
+                                                      .style (m/TextStyle
+                                                              .color (m/Color 0xff37a9dd)
+                                                              .fontFamily "Poppins"
+                                                              .fontWeight m/FontWeight.bold))]))
+                                 (m/IconButton
+                                  .icon (m/Icon m/Icons.class_outlined)
+                                  .color (m/Colors.grey.withOpacity 0.8)
+                                  .onPressed #(do
+                                                (.pushReplacementNamed navigator "/library")
+                                                nil)))
+                               ;; Main menu
+                               (if (= active 3)
+                                 (m/Container
+                                  .decoration (m/BoxDecoration
+                                               .color (m/Colors.white)
+                                               .border (m/Border.all
+                                                        .width 1
+                                                        .color (m/Color 0xff37a9dd))
+                                               .borderRadius (m/BorderRadius.circular 50))
+                                  .padding (m/EdgeInsets.symmetric
+                                            .horizontal 18
+                                            .vertical 8)
+                                  .child (m/Row
+                                          .mainAxisAlignment m/MainAxisAlignment.center
+                                          .children [(m/Icon
+                                                      m/Icons.apps_outlined
+                                                      .color (m/Color 0xff37a9dd))
+                                                     (m/SizedBox
+                                                      .width 10)
+                                                     (m/Text
+                                                      "Main menu"
+                                                      .style (m/TextStyle
+                                                              .color (m/Color 0xff37a9dd)
+                                                              .fontFamily "Poppins"
+                                                              .fontWeight m/FontWeight.bold))]))
+                                 (m/IconButton
+                                  .icon (m/Icon m/Icons.apps_outlined)
+                                  .color (m/Colors.grey.withOpacity 0.8)
+                                  .onPressed #(do
+                                                (.pushReplacementNamed navigator "/main-menu")
+                                                nil)))])))))

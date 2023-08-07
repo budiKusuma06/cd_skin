@@ -1,0 +1,43 @@
+(ns pages.explore
+  (:require
+   ["package:flutter/material.dart" :as m]
+   ["package:carousel_slider/carousel_slider.dart" :as c]
+   [components.top-navbar :as top-navbar]
+   [components.bottom-navbar :as bottom-navbar]
+   [cljd.flutter :as f]))
+
+(def ^:private initNavBar 0)
+
+(def img-list{:image ["https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80"
+                 "https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80"
+                 "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80"
+                 "https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80"
+                 "https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80"]})
+
+(def list-number {:number ["A" "B" "C" "D"]} )
+
+(defn carousel []
+  (map (fn [val]
+         (m/Image.network (str val)
+                          .fit (m/BoxFit.cover))) (:image img-list)))
+
+(defn ^m/Widget init [ctx]
+  (f/widget
+   :get [m/Navigator]
+   (m/Scaffold
+    .appBar (m/PreferredSize
+             .preferredSize (m/Size.fromHeight 55)
+             .child (top-navbar/init))
+    .body  (m/Container
+            .child (c/CarouselSlider
+                    .options (c/CarouselOptions)
+                    .items (map (fn [val]
+                                  (m/Container
+                                   .width 1500
+                                   .decoration (m/BoxDecoration
+                                                .border (m/Border.all
+                                                         .width 1
+                                                         .color (m/Colors.black)))
+                                   .child (m/Center
+                                           .child (m/Text val)))) (:number list-number))))
+    .bottomNavigationBar (bottom-navbar/init initNavBar))))

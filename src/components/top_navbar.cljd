@@ -1,0 +1,39 @@
+(ns components.top-navbar
+  (:require
+   ["package:flutter/material.dart" :as m]
+   [components.bottom-navbar :as bottom-navbar]
+   [cljd.flutter :as f]))
+
+(defn init []
+  (f/widget
+   :get [m/Navigator]
+   (m/AppBar
+    .backgroundColor (m/Colors.white.withOpacity 0.8)
+    .elevation 0
+    .title (m/GestureDetector
+            .onTap #(do (.pushNamed navigator "/search") nil)
+            .child (m/Container
+                    .decoration (m/BoxDecoration
+                                 .color m/Colors.grey.shade100
+                                 .border (m/Border.all
+                                          .width 0.5
+                                          .color m/Colors.grey.shade200)
+                                 .borderRadius (m/BorderRadius.circular 4))
+                    .child (m/Padding
+                            .padding (m/EdgeInsets.symmetric
+                                      .horizontal 16
+                                      .vertical 4)
+                            .child (m/Row
+                                    .mainAxisAlignment m/MainAxisAlignment.spaceBetween
+                                    .children [(m/Icon
+                                                m/Icons.search
+                                                .color (m/Colors.grey.withOpacity 0.8))
+                                               (m/Text
+                                                "Loogo°"
+                                                .style (m/TextStyle
+                                                        .color (m/Color 0xff37a9dd)
+                                                        .fontFamily "Poppins"
+                                                        .fontSize 22
+                                                        .fontWeight m/FontWeight.w600))
+                                               (m/SizedBox
+                                                .width 20)])))))))

@@ -1,0 +1,26 @@
+(ns pages.search
+  (:require
+   ["package:flutter/material.dart" :as m]
+   [cljd.flutter :as f]))
+
+(defn ^m/Widget init [ctx]
+  (f/widget
+   :get [m/Navigator]
+   (m/Scaffold
+    .appBar (m/PreferredSize
+             .preferredSize (m/Size.fromHeight 55)
+             .child (m/AppBar
+                     .backgroundColor (m/Colors.white.withOpacity 0.8)
+                     .elevation 0
+                     .leading (m/IconButton
+                               .icon (m/Icon m/Icons.arrow_back_outlined)
+                               .color (m/Color 0xff37a9dd)
+                               .onPressed #(.pop navigator))
+                     .title (m/TextField
+                             .autofocus true
+                             .decoration (m/InputDecoration
+                                          .border m/InputBorder.none
+                                          .hintText "Do you need something?"))))
+    .body   (m/Container
+             .child (m/Text
+                     "Seach page")))))
